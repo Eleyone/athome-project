@@ -16,28 +16,25 @@ var app = express();                 // define our app using express
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(bodyParser.json());
-
-
-
 
 mongoose.connect('mongodb://node:node@novus.modulusmongo.net:27017/Iganiq8o'); // connect to our database
 
-// ROUTES FOR OUR API
-// =============================================================================
-var router = express.Router();              // get an instance of the express Router
+var router = express.Router();
 
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
+// Initial dummy route for testing
+// http://localhost:3000/api
 router.get('/', function(req, res) {
-    res.json({ message: 'hooray! welcome to our api!' });
+    res.json({ message: 'You are running dangerously low on beer!' });
 });
+app.use('', router);
 
-// more routes for our API will happen here
-
-// REGISTER OUR ROUTES -------------------------------
-// all of our routes will be prefixed with /api
-app.use('/api', router);
+var bookApiRouter = require("./app.js/modules/book-api");
+app.use('/api', bookApiRouter);
+//app.use(require("static-pages"));
 
 // START THE SERVER
 // =============================================================================

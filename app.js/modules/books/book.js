@@ -8,7 +8,7 @@ var BookSchema   = new Schema({
     title: String,
     author: String,
     isbn: String,
-    resume: Text
+    resume: String
 });
 
 module.exports = mongoose.model('Book', BookSchema);
