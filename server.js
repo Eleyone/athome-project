@@ -71,7 +71,7 @@ booksRoute.post(function (req, res) {
     });
 });
 
-var bookRoute = bookApiRouter.route('/books/:book_id');
+var bookRoute = bookApiRouter.route('/book/:book_id');
 
 bookRoute.get(function (req, res) {
     Book.findOne(req.params.book_id, function (err, book) {
@@ -84,10 +84,14 @@ bookRoute.get(function (req, res) {
 bookRoute.put(function (req, res) {
     Book.findById(req.params.book_id, function (err, book) {
         // Update the existing book attributes
-        book.title = req.body.title;
-        book.author = req.body.author;
-        book.isbn = req.body.isbn;
-        book.resume = req.body.resume;
+        if (req.body.title)
+            book.title = req.body.title;
+
+        if (req.body.title)
+            book.author = req.body.author;
+
+        if (req.body.resume)
+            book.resume = req.body.resume;
 
         book.save(function (err, book) {
             if (err)
