@@ -32,9 +32,9 @@ router.get('/', function (req, res) {
 });
 app.use('', router);
 
-var bookApiRouter = router.route("/api");
+var bookApiRouter = express.Router();
 
-var Book = require("./book.js");
+var Book = require("./app/models/book.js");
 
 var booksRoute = bookApiRouter.route('/books');
 
