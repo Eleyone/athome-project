@@ -11,7 +11,7 @@ var express = require('express');        // call express
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-var port = process.env.PORT || 8080;        // set our port
+var port = process.env.PORT || 3000;        // set our port
 var app = express();                 // define our app using express
 
 // configure app to use bodyParser()
@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://node:node@novus.modulusmongo.net:27017/Iganiq8o'); // connect to our database
+mongoose.connect('mongodb://localhost:27017/athome'); // connect to our database
 
 var router = express.Router();
 
@@ -49,7 +49,21 @@ booksRoute.get(function (req, res) {
 booksRoute.post(function (req, res) {
     // try to use high-level calls here
     // if you want something complex just create another special module for this
-    var newBook = new Book(req.body);
+
+    var data = {
+        title: req.body.title,
+        author: req.body.author,
+        resume: req.body.resume,
+        isbn: []
+    };
+    if (req.body.isbn10) {
+        data.isbn.push({type: "ISBN10", id: req.body.isbn10});
+    }
+    if (req.body.isbn13) {
+        data.isbn.push({type: "ISBN13", id: req.body.isbn13});
+    }
+
+    var newBook = new Book(data);
     newBook.save(function (err, book) {
         if (err)
             res.send(err); // do something on error
