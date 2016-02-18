@@ -1,0 +1,123 @@
+{
+	"id": "7c3202f3-f2fe-d85d-13fd-05d340f721c1",
+	"name": "atHome",
+	"order": [
+		"b167faa0-5e57-1dec-948e-fd4459ada19a",
+		"dc0afa58-9b22-2d76-51cb-5c8912950de4",
+		"81197e95-13ee-0a4e-cfcd-06f0c2b04988",
+		"7dfff503-3f2b-4c42-58ef-3cdf88ae56b5"
+	],
+	"timestamp": 1455802185748,
+	"requests": [
+		{
+			"id": "7dfff503-3f2b-4c42-58ef-3cdf88ae56b5",
+			"url": "localhost:3000/api/users",
+			"method": "GET",
+			"headers": "Authorization: Basic RWxleW9uZTpMdWNpZjNyIQ==\n",
+			"data": [],
+			"dataMode": "params",
+			"tests": "",
+			"preRequestScript": "",
+			"currentHelper": "basicAuth",
+			"helperAttributes": "{\"username\":\"Eleyone\",\"password\":\"Lucif3r!\",\"saveToRequest\":false}",
+			"pathVariables": {},
+			"version": 2,
+			"name": "localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"collectionId": "7c3202f3-f2fe-d85d-13fd-05d340f721c1"
+		},
+		{
+			"id": "81197e95-13ee-0a4e-cfcd-06f0c2b04988",
+			"url": "localhost:3000/api/books",
+			"method": "GET",
+			"headers": "Authorization: Basic RWxleW9uZTpMdWNpZjNyIQ==\n",
+			"data": [],
+			"dataMode": "params",
+			"tests": "",
+			"preRequestScript": "",
+			"currentHelper": "basicAuth",
+			"helperAttributes": "{\"username\":\"Eleyone\",\"password\":\"Lucif3r!\",\"saveToRequest\":false}",
+			"pathVariables": {},
+			"version": 2,
+			"name": "localhost:3000/api/books",
+			"description": "",
+			"descriptionFormat": "html",
+			"collectionId": "7c3202f3-f2fe-d85d-13fd-05d340f721c1"
+		},
+		{
+			"id": "b167faa0-5e57-1dec-948e-fd4459ada19a",
+			"url": "localhost:3000/api/books/56c5c6ade01cddf040000001",
+			"method": "PUT",
+			"headers": "Authorization: Basic RWxleW9uZTpMdWNpZjNyIQ==\n",
+			"data": [
+				{
+					"key": "resume",
+					"value": "Wazaa !!!",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": "",
+			"preRequestScript": "",
+			"currentHelper": "basicAuth",
+			"helperAttributes": "{\"username\":\"Eleyone\",\"password\":\"Lucif3r!\",\"saveToRequest\":false}",
+			"pathVariables": {},
+			"version": 2,
+			"name": "localhost:3000/api/books/56c5c6ade01cddf040000001",
+			"description": "",
+			"descriptionFormat": "html",
+			"collectionId": "7c3202f3-f2fe-d85d-13fd-05d340f721c1"
+		},
+		{
+			"id": "dc0afa58-9b22-2d76-51cb-5c8912950de4",
+			"url": "localhost:3000/api/books",
+			"method": "POST",
+			"headers": "Authorization: Basic RWxleW9uZTpMdWNpZjNyIQ==\n",
+			"data": [
+				{
+					"key": "title",
+					"value": "L'épée de vérité, T5",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "author",
+					"value": "Goodkind, Terry",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "resume",
+					"value": "Résumé de test",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "isbn10",
+					"value": "2915549621",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "isbn13",
+					"value": "9782915549621",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": "",
+			"preRequestScript": "",
+			"currentHelper": "basicAuth",
+			"helperAttributes": "{\"username\":\"Eleyone\",\"password\":\"Lucif3r!\",\"saveToRequest\":false}",
+			"pathVariables": {},
+			"version": 2,
+			"name": "localhost:3000/api/books",
+			"description": "",
+			"descriptionFormat": "html",
+			"collectionId": "7c3202f3-f2fe-d85d-13fd-05d340f721c1"
+		}
+	]
+}

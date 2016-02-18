@@ -11,15 +11,17 @@
     "url": "https://github.com/Eleyone/athome-project.git"
   },
   "author": {
-    "name" : "Arnaud Grousset",
-    "email" : "grousset.a@gmail.com"
+    "name": "Arnaud Grousset",
+    "email": "grousset.a@gmail.com"
   },
   "main": "server.js",
   "dependencies": {
+    "bcrypt-nodejs": "~0.0.3",
+    "body-parser": "~1.0.1",
     "express": "~4.0.0",
     "mongoose": "~3.6.13",
-    "body-parser": "~1.0.1"
+    "passport": "^0.3.2",
+    "passport-http": "^0.3.0"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

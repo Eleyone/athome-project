@@ -10,6 +10,7 @@
 var express = require('express');        // call express
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var passport = require('passport');
 
 var port = process.env.PORT || 3000;        // set our port
 var app = express();                 // define our app using express
@@ -20,6 +21,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+
+app.use(passport.initialize());
 
 mongoose.connect('mongodb://localhost:27017/athome'); // connect to our database
 
@@ -33,7 +36,8 @@ router.get('/', function (req, res) {
 app.use('', router);
 
 app.use('/api', require('./app/routers/book.js'));
-//app.use(require("static-pages"));
+
+app.use('/api', require('./app/routers/user.js'));
 
 // START THE SERVER
 // =============================================================================

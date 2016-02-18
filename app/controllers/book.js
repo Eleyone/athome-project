@@ -4,7 +4,7 @@
 var Book = require("../models/book.js");
 
 exports.getBooks = function (req, res) {
-    Book.find(function (err, books) {
+    Book.find({ userId: req.user._id }, function (err, books) {
         if (err)
             res.send(err);
         res.json(books);
@@ -16,6 +16,7 @@ exports.postBooks = function (req, res) {
     // if you want something complex just create another special module for this
 
     var data = {
+        userId: req.user._id,
         title: req.body.title,
         author: req.body.author,
         resume: req.body.resume,
@@ -37,7 +38,7 @@ exports.postBooks = function (req, res) {
 };
 
 exports.getBook = function (req, res) {
-    Book.findOne(req.params.book_id, function (err, book) {
+    Book.findOne({ userId: req.user._id, _id: req.params.beer_id }, function (err, book) {
         if (err)
             res.send(err);
         res.json(book);
@@ -45,22 +46,24 @@ exports.getBook = function (req, res) {
 };
 
 exports.putBook = function (req, res) {
-    Book.findById(req.params.book_id, function (err, book) {
-        // Update the existing book attributes
-        if (req.body.title)
-            book.title = req.body.title;
 
-        if (req.body.title)
-            book.author = req.body.author;
+    // Update the existing book attributes
+    var data = {};
 
-        if (req.body.resume)
-            book.resume = req.body.resume;
+    if (req.body.title)
+        data.title = req.body.title;
 
-        book.save(function (err, book) {
+    if (req.body.title)
+        data.author = req.body.author;
+
+    if (req.body.resume)
+        data.resume = req.body.resume;
+
+    Book.update({ userId: req.user._id, _id: req.params.book_id }, data, function (err, num, raw) {
             if (err)
                 res.send(err);
-            res.json(book);
-        });
+            res.json(raw);
+
     });
 };
 
