@@ -1,6 +1,18 @@
 # athome-project
 Home library management app
 
-#Install
+##Install
 
-To install project, just clone this repositry on your hard drvie, and start npm install in project root folder.
+First clone this repositry on your workspace,
+```shell
+    eleyone@local:workspace# git clone https://github.com/Eleyone/athome-project.git
+```
+second, install NodeJS modules in project root folder,
+```shell
+    eleyone@local:athome-project# npm install
+```
+third, start app.
+```shell
+    eleyone@local:athome-project# node server.js
+```
+last, enjoy :)

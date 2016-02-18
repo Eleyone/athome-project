@@ -5,10 +5,10 @@
   "description": "Home library management app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Eleyone/athome-project"
+    "url": "https://github.com/Eleyone/athome-project.git"
   },
   "bugs": {
-    "url": "https://github.com/Eleyone/athome-project.git"
+    "url": "https://github.com/Eleyone/athome-project/issue"
   },
   "author": {
     "name": "Arnaud Grousset",
