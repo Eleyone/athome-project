@@ -19,4 +19,4 @@ last, enjoy :)
 
 ##Resources
 
-[Scott Smith tutorial](http://scottksmith.com/blog/2014/05/02/building-restful-apis-with-node/)
+[Scott Smith tutorial on RESTFul API with NodeJS](http://scottksmith.com/blog/2014/05/02/building-restful-apis-with-node/)
