@@ -16,3 +16,7 @@ third, start app.
     athome-project# node server.js
 ```
 last, enjoy :)
+
+##Resources
+
+[Scott Smith tutorial](http://scottksmith.com/blog/2014/05/02/building-restful-apis-with-node/)
