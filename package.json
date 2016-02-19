@@ -18,14 +18,29 @@
   "dependencies": {
     "bcrypt-nodejs": "~0.0.3",
     "body-parser": "~1.0.1",
+    "bunyan": "^1.6.0",
+    "daemon": "^1.1.0",
+    "debug": "^2.2.0",
     "express": "~4.0.0",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.13.0",
     "mongoose": "~3.6.13",
+    "nconf": "^0.8.4",
+    "nopt": "^3.0.6",
     "oauth2orize": "^1.2.2",
     "passport": "^0.3.2",
+    "passport-facebook": "^2.1.0",
+    "passport-google-oauth": "^1.0.0",
     "passport-http": "^0.3.0",
-    "passport-http-bearer": "^1.0.1"
+    "passport-http-bearer": "^1.0.1",
+    "passport-twitter": "^1.0.4",
+    "underscore": "^1.8.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "blanket": "^1.2.2",
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.8.0"
+  }
 }
