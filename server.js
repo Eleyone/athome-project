@@ -16,7 +16,7 @@ var session = require('express-session');
 var nopt = require("nopt");
 var noptUsage = require("nopt-usage");
 
-
+// Gestion des arguments de la ligne de commande
 var knownOpts = {
         "daemon": Boolean,
         "help": Boolean
@@ -48,12 +48,12 @@ console.log("PID: ", process.pid);
 var port = process.env.PORT || 3000;        // set our port
 var app = express();                 // define our app using express
 var hbsEngine = handlebars.create({
-    defaultLayout: 'main',
     extname: ".hbs",
-    layoutsDir: "views/layouts/",
-    partialsDir: "views/partials/"
+    defaultLayout: 'main',
+    layoutsDir: "app/views/layouts/",
+    partialsDir: "app/views/partials/"
 });
-
+app.set('views', 'app/views/');
 app.engine('.hbs', hbsEngine.engine);
 app.set('view engine', '.hbs');
 
