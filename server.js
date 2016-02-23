@@ -11,8 +11,39 @@ var express = require('express');        // call express
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
-var handlebars  = require('express-handlebars');
+var handlebars = require('express-handlebars');
 var session = require('express-session');
+var nopt = require("nopt");
+var noptUsage = require("nopt-usage");
+
+
+var knownOpts = {
+        "daemon": Boolean,
+        "help": Boolean
+    }, shortHands = {
+        "d": ['--daemon', 'true'],
+        "h": ['--help', 'true']
+    }, descOpts = {
+        "daemon": "Start application as deamon",
+        "help": "Show this help"
+    }, defaultOpts = {
+        "daemon": false,
+        "help": false
+    },
+    parsed = nopt(knownOpts, shortHands, process.argv, 2),
+    usage = noptUsage(knownOpts, shortHands, descOpts, defaultOpts);
+
+if (parsed.help) {
+    console.log('Usage: ');
+    console.log(usage);
+    process.exit(0);
+}
+
+if (parsed.daemon) {
+    require('daemon')();
+}
+
+console.log("PID: ", process.pid);
 
 var port = process.env.PORT || 3000;        // set our port
 var app = express();                 // define our app using express
@@ -45,7 +76,7 @@ mongoose.connect('mongodb://localhost:27017/athome'); // connect to our database
 var router = express.Router();
 
 // Initial dummy route for testing
-// http://localhost:3000/api
+// http://localhost:3000/
 router.get('/', function (req, res) {
     res.json({message: 'You are running dangerously low on beer!'});
 });
