@@ -50,10 +50,9 @@ BookSchema.static({
 BookSchema.methods.getISBN10 = function () {
 
     var isbn = null;
-    _.each(this.isbn, function (index) {
-        var isbnObject = this[index];
-        if (isbnObject.type == "ISBN10") {
-            isbn = isbnObject.id;
+    _.each(this.isbn, function (item) {
+        if (item.type == "ISBN10") {
+            isbn = item.id;
         }
     });
     return isbn;
@@ -62,10 +61,9 @@ BookSchema.methods.getISBN10 = function () {
 BookSchema.methods.getISBN13 = function () {
 
     var isbn = null;
-    _.each(this.isbn, function (index) {
-        var isbnObject = this[index];
-        if (isbnObject.type == "ISBN13") {
-            isbn = isbnObject.id;
+    _.each(this.isbn, function (item) {
+        if (item.type == "ISBN13") {
+            isbn = item.id;
         }
     });
     return isbn;
