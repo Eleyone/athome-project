@@ -3,7 +3,7 @@
  */
 var passport = require('passport');
 var BasicStrategy = require('passport-http').BasicStrategy;
-var BearerStrategy = require('passport-http-bearer').Strategy
+var BearerStrategy = require('passport-http-bearer').Strategy;
 var Token = require('../models/token');
 var User = require('../models/user');
 var Client = require('../models/client');

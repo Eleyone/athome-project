@@ -38,13 +38,18 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "browserify": "^13.0.0",
     "chai": "^3.5.0",
     "karma": "^0.13.21",
-    "karma-mocha": "^0.2.2",
+    "karma-browserify": "^5.0.2",
     "karma-coverage": "^0.5.3",
+    "karma-mocha": "^0.2.2",
+    "karma-requirejs": "^0.2.5",
     "mocha": "^2.4.5",
     "mocha-mongoose": "^1.1.1",
+    "requirejs": "^2.1.22",
     "sinon": "^1.17.3",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
+    "watchify": "^3.7.0"
   }
 }
