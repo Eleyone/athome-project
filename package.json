@@ -38,8 +38,10 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "blanket": "^1.2.2",
     "chai": "^3.5.0",
+    "karma": "^0.13.21",
+    "karma-mocha": "^0.2.2",
+    "karma-coverage": "^0.5.3",
     "mocha": "^2.4.5",
     "mocha-mongoose": "^1.1.1",
     "sinon": "^1.17.3",

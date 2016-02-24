@@ -3,14 +3,6 @@
  */
 var Book = require('../../app/models/book');
 
-var _ = require("underscore");
-var should = require('chai').should();
-
-var dbUri = 'mongodb://localhost:27017/athome_test';
-
-var mongoose = require("mongoose");
-var dbTest = require('mocha-mongoose')(dbUri);
-
 describe("Book", function () {
     //holds a customer to use in the each test
     var currentBook = null;
@@ -41,11 +33,12 @@ describe("Book", function () {
     beforeEach(function (done) {
         new Book(testDataBook).save(function (err, book) {
             if (err) return done(err);
+            currentBook = book;
             done();
         });
     });
 
-    after(function (done) {
+    afterEach(function (done) {
         Book.remove(done);
     });
 
@@ -53,7 +46,6 @@ describe("Book", function () {
 
         new Book(testDataBook).save(function (err, book) {
             if (err) return done(err);
-            currentBook = book;
             done();
         });
     });
