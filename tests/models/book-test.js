@@ -27,22 +27,87 @@ describe("Book", function () {
                 "id": "9782915549621",
                 "type": "ISBN13"
             }
-        ]
+        ],
+        'userId': 'DummyUserID'
     };
 
-    beforeEach(function (done) {
+    before(function(done) {
         //add some test data
         if (mongoose.connection.db) return done();
 
         mongoose.connect(dbUri, done);
     });
 
+    beforeEach(function (done) {
+        new Book(testDataBook).save(function (err, book) {
+            if (err) return done(err);
+            done();
+        });
+    });
+
+    after(function (done) {
+        Book.remove(done);
+    });
+
     it("can be saved", function(done){
-        new Book(testDataBook).save(function (book) {
+
+        testDataBook.isbn = [
+            {
+                "type": "ISBN10",
+                "id": "291437058X"
+            },
+            {
+                "type": "ISBN13",
+                "id": "9782914370585"
+            }
+        ];
+
+        new Book(testDataBook).save(function (err, book) {
+            if (err) return done(err);
             currentBook = book;
             done();
         });
-    })
+    });
+
+    it("can be listed", function(done){
+        Book.find({}, function(err, books){
+            if (err) return done(err);
+
+            // without clearing the DB between specs, this would be 3
+            books.length.should.equal(3);
+            done();
+        });
+    });
+
+    /*
+    it("can be updated", function(done){
+        currentBook.update(function (err, book) {
+            if (err) return done(err);
+            currentBook = book;
+            done();
+        });
+    });
+    */
+
+    it("can get IBSN10", function(done){
+        var isbn10 = currentBook.getISBN10();
+        testDataBook.isbn[0].id.should.equals(isbn10);
+    });
+
+    it("can get IBSN13", function(done){
+        var isbn13 = currentBook.getISBN10();
+        testDataBook.isbn[1].id.should.equals(isbn13);
+    });
+
+    /*
+    it("can be removed", function(done){
+        new Book(testDataBook).save(function (err, book) {
+            if (err) return done(err);
+            currentBook = book;
+            done();
+        });
+    });
+    */
 
     it("retrieves by ISBN10", function (done) {
 
@@ -50,9 +115,12 @@ describe("Book", function () {
         var bookTitle = testDataBook.title;
 
         Book.findByISBN10(isbn10, function (err, book) {
-            console.log(err, book);
-            book.title.should.equal(bookTitle);
-            _.each(book.isbn, function(index){
+
+            book.length.should.equal(1);
+
+            book[0].title.should.equal(bookTitle);
+
+            _.each(book[0].isbn, function(index){
 
                 console.log(arguments);
                 var isbnObject = this[index];
