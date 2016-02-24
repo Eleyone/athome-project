@@ -32,20 +32,18 @@ describe("Book", function () {
 
     beforeEach(function (done) {
         //add some test data
-        if (!mongoose.connection.db) mongoose.connect(dbUri, done);
+        if (mongoose.connection.db) return done();
 
-        var newBook = new Book(testDataBook);
-        newBook.save(function (book) {
+        mongoose.connect(dbUri, done);
+    });
+
+    it("can be saved", function(done){
+        new Book(testDataBook).save(function (book) {
             currentBook = book;
             done();
         });
-    });
-    afterEach(function (done) {
-        //delete all the customer records
-        Book.remove({}, function () {
-            done();
-        });
-    });
+    })
+
     it("retrieves by ISBN10", function (done) {
 
         var isbn10 = testDataBook.isbn[0].id;
@@ -65,6 +63,7 @@ describe("Book", function () {
             done();
         });
     });
+
     it("retrieves by ISBN13", function (done) {
 
         var isbn13 = testDataBook.isbn[1].id;
