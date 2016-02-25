@@ -4,7 +4,7 @@
 var Book = require("../models/book.js");
 
 exports.getBooks = function (req, res) {
-    Book.find({ userId: req.user._id }, function (err, books) {
+    Book.find({userId: req.user._id}, function (err, books) {
         if (err)
             res.send(err);
         res.json(books);
@@ -38,7 +38,7 @@ exports.postBooks = function (req, res) {
 };
 
 exports.getBook = function (req, res) {
-    Book.findOne({ userId: req.user._id, _id: req.params.beer_id }, function (err, book) {
+    Book.findOne({userId: req.user._id, _id: req.params.beer_id}, function (err, book) {
         if (err)
             res.send(err);
         res.json(book);
@@ -47,23 +47,38 @@ exports.getBook = function (req, res) {
 
 exports.putBook = function (req, res) {
 
+    var book = null;
+
+    Book.find({userId: req.user._id, _id: req.params.book_id}, function (err, foundBook) {
+        if (err)
+            res.send(err);
+        book = foundBook;
+    });
+
     // Update the existing book attributes
     var data = {};
 
     if (req.body.title)
         data.title = req.body.title;
 
-    if (req.body.title)
+    if (req.body.author)
         data.author = req.body.author;
 
     if (req.body.resume)
         data.resume = req.body.resume;
 
-    Book.update({ userId: req.user._id, _id: req.params.book_id }, data, function (err, num, raw) {
-            if (err)
-                res.send(err);
-            res.json(raw);
+    if (req.body.isbn10 && book.getISBN10() != null) {
+        data.isbn.push({type: "ISBN10", id: req.body.isbn10});
+    }
 
+    if (req.body.isbn13 && book.getISBN13() != null) {
+        data.isbn.push({type: "ISBN13", id: req.body.isbn13});
+    }
+
+    book.update(data, function (err, num, raw) {
+        if (err)
+            res.send(err);
+        res.json(raw);
     });
 };
 

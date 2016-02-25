@@ -9,39 +9,56 @@ var Schema = mongoose.Schema;
 var BookSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     author: {
         type: String,
         required: true
     },
     isbn: {
-        type: Object,
+        type: [
+            {
+                type: {
+                    type: String,
+                    required: true
+                },
+                id: {
+                    type: String,
+                    required: true,
+                    unique: true
+                }
+            }
+        ],
         required: true
     },
-    resume: String,
-    userId: {
-        type: String,
-        required: true
-    },
+    resume: String
 });
 
 BookSchema.static({
     findByISBN10: function (isbn10, callback) {
 
-        var params = {isbn: { $elemMatch: {
-            type: "ISBN10",
-            id: isbn10
-        }}};
+        var params = {
+            isbn: {
+                $elemMatch: {
+                    type: "ISBN10",
+                    id: isbn10
+                }
+            }
+        };
 
         return this.find(params, callback);
     },
     findByISBN13: function (isbn13, callback) {
 
-        var params = {isbn: { $elemMatch: {
-            type: "ISBN13",
-            id: isbn13
-        }}};
+        var params = {
+            isbn: {
+                $elemMatch: {
+                    type: "ISBN13",
+                    id: isbn13
+                }
+            }
+        };
 
         return this.find(params, callback);
     }

@@ -86,6 +86,7 @@ app.use('/api', require('./app/routers/oauth2'));
 app.use('/api', require('./app/routers/client'));
 app.use('/api', require('./app/routers/user'));
 app.use('/api', require('./app/routers/book'));
+app.use('/api', require('./app/routers/shelf'));
 
 // START THE SERVER
 // =============================================================================
