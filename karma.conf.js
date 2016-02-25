@@ -6,18 +6,16 @@ module.exports = function (config) {
         plugins: ['karma-mocha', 'karma-requirejs', 'karma-browserify', 'karma-phantomjs-launcher'],
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
-        basePath: '',
-
+        basePath: 'public/',
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
         frameworks: ['mocha', 'requirejs'],
 
-
         // list of files / patterns to load in the browser
         files: [
             'test-main.js',
-            {pattern: 'app/**/*.js', included: true},
+            {pattern: 'app/**/*.js', included: false},
             {pattern: 'test/**/*-test.js', included: false}
         ],
 
@@ -66,4 +64,4 @@ module.exports = function (config) {
         // how many browser should be started simultaneous
         concurrency: Infinity
     })
-}
+};
