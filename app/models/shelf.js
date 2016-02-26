@@ -20,7 +20,8 @@ var ShelfSchema = new Schema({
             book: {
                 type : ObjectId,
                 ref: 'Book',
-                required: true
+                required: true,
+                unique: true
             },
             read: {
                 type: Boolean,

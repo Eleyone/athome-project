@@ -11,11 +11,13 @@ describe("Shelf", function () {
         "content": [
             {
                 "book": "2915549621",
-                "type": "ISBN10"
+                read: false,
+                own: true
             },
             {
                 "book": "9782915549621",
-                "type": "ISBN13"
+                read: false,
+                own: true
             }
         ],
         'userId': 'DummyUserID'
