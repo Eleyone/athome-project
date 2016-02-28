@@ -18,7 +18,7 @@ var ShelfSchema = new Schema({
     content: [
         {
             book: {
-                type : ObjectId,
+                type : mongoose.Schema.Types.ObjectId,
                 ref: 'Book',
                 required: true,
                 unique: true
