@@ -15,19 +15,37 @@ var handlebars = require('express-handlebars');
 var session = require('express-session');
 var nopt = require("nopt");
 var noptUsage = require("nopt-usage");
+var nconf = require("nconf");
+var fs = require('fs');
 
 // Gestion des arguments de la ligne de commande
 var knownOpts = {
+        "port": String,
+        "mongodb": String,
+        "config": String,
         "daemon": Boolean,
+        "save": Boolean,
         "help": Boolean
     }, shortHands = {
+        "p": ['--port', '3000'],
+        "m": ['--mongodb', 'mongodb://localhost:27017'],
+        "c": ['--config', './config.json'],
         "d": ['--daemon', 'true'],
+        "s": ['--save', 'true'],
         "h": ['--help', 'true']
     }, descOpts = {
+        "port": "Application port",
+        "mongodb": "MongoDB server address",
+        "config": "Path to config file",
         "daemon": "Start application as deamon",
+        "save": "Save command line config to config file",
         "help": "Show this help"
     }, defaultOpts = {
+        "port": 3000,
+        "mongodb": 'mongodb://localhost:27017',
+        "config": './config.json',
         "daemon": false,
+        "save": false,
         "help": false
     },
     parsed = nopt(knownOpts, shortHands, process.argv, 2),
@@ -39,13 +57,25 @@ if (parsed.help) {
     process.exit(0);
 }
 
+nconf.file({
+    file: parsed.config
+});
+
+if (parsed.save) {
+    nconf.save(function (err) {
+        fs.readFile(parsed.config, function (err, parsed) {
+            console.dir(JSON.parse(parsed.toString()))
+        });
+    });
+}
+
 if (parsed.daemon) {
     require('daemon')();
 }
 
 console.log("PID: ", process.pid);
 
-var port = process.env.PORT || 3000;        // set our port
+var port = process.env.PORT || parsed.port;        // set our port
 var app = express();                 // define our app using express
 var hbsEngine = handlebars.create({
     extname: ".hbs",
@@ -71,7 +101,7 @@ app.use(session({
     resave: true
 }));
 
-mongoose.connect('mongodb://localhost:27017/athome'); // connect to our database
+mongoose.connect(parsed.mongodb +'/athome'); // connect to our database
 
 var router = express.Router();
 
