@@ -3,20 +3,20 @@
 
 module.exports = function (config) {
     config.set({
-        plugins: ['karma-mocha', 'karma-requirejs', 'karma-browserify', 'karma-phantomjs-launcher'],
+        plugins: ['karma-mocha', 'karma-chai', 'karma-sinon', 'karma-requirejs', 'karma-browserify', 'karma-phantomjs-launcher'],
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
         basePath: 'public/',
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['mocha', 'requirejs'],
+        frameworks: ['mocha', 'requirejs', 'chai', 'sinon'],
 
         // list of files / patterns to load in the browser
         files: [
-            'test-main.js',
-            {pattern: 'app/**/*.js', included: false},
-            {pattern: 'test/**/*-test.js', included: false}
+            {pattern: 'src/js/**/*.js', included: false},
+            {pattern: 'tests/**/*-test.js', included: false},
+            'tests/test-main.js'
         ],
 
         // list of files to exclude

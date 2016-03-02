@@ -19,8 +19,7 @@ describe("Book", function () {
                 "id": "9782915549621",
                 "type": "ISBN13"
             }
-        ],
-        'userId': 'DummyUserID'
+        ]
     };
 
     before(function(done) {
@@ -44,7 +43,9 @@ describe("Book", function () {
 
     it("can be saved", function(done){
 
-        new Book(testDataBook).save(function (err, book) {
+        var bookData = {'title' : 'Plop', 'author' : 'Waza!', 'isbn': [{id: "1234567890", 'type': "ISBN10"}]};
+
+        new Book(bookData).save(function (err, book) {
             if (err) return done(err);
             done();
         });

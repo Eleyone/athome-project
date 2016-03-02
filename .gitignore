@@ -1,5 +1,8 @@
+
 # Created by .gitignore support plugin (hsz.mobi)
 athome-project.iml
 .idea
 /node_modules
 /node_modules/**
+/public/bower_components
+/public/bower_components/**

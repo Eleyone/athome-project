@@ -16,7 +16,7 @@ describe("Shelf", function () {
             },
             {
                 "book": new mongoose.Types.ObjectId,
-                read: false,
+                read: true,
                 own: true
             }
         ],
@@ -43,7 +43,18 @@ describe("Shelf", function () {
     });
 
     it("can be saved", function(done){
-        new Shelf(testDataShelf).save(function (err, shelf) {
+        var shelfData = {
+            "name": "Library of DummyUser",
+            "content": [
+                {
+                    "book": new mongoose.Types.ObjectId,
+                    read: false,
+                    own: true
+                }
+            ],
+            'userId': 'DummyUserID'
+        };
+        new Shelf(shelfData).save(function (err, shelf) {
             if (err) return done(err);
             done();
         });
