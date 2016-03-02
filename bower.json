@@ -1,0 +1,23 @@
+{
+  "name": "athome-project",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Eleyone/athome-project",
+  "authors": [
+    "Arnaud Grousset <grousset.a@gmail.com>"
+  ],
+  "description": "Home library management app",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "latest",
+    "bootstrap": "latest",
+    "marionette.handlebars": "latest"
+  }
+}
