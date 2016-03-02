@@ -48,15 +48,18 @@
     "karma": "^0.13.21",
     "karma-browserify": "^5.0.2",
     "karma-coverage": "^0.5.3",
+    "karma-mocha": "^0.2.2",
     "karma-requirejs": "^0.2.5",
     "karma-mocha": "^0.2.2",
     "karma-chai": "^0.1.0",
     "karma-sinon": "^1.0.4",
+    "karma-phantomjs-launcher": "*",
     "mocha": "^2.4.5",
     "mocha-mongoose": "^1.1.1",
     "requirejs": "^2.1.22",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
-    "watchify": "^3.7.0"
+    "watchify": "^3.7.0",
+    "underscore": "^1.8.3"
   }
 }
