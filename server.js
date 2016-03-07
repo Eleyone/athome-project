@@ -7,16 +7,18 @@
 // =============================================================================
 
 // call the packages we need
-var express = require('express');        // call express
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var passport = require('passport');
-var handlebars = require('express-handlebars');
-var session = require('express-session');
-var nopt = require("nopt");
-var noptUsage = require("nopt-usage");
-var nconf = require("nconf");
-var fs = require('fs');
+var express = require('express'),
+    bodyParser = require('body-parser'),
+    handlebars = require('express-handlebars'),
+    session = require('express-session'),
+    mongoose = require('mongoose'),
+    passport = require('passport'),
+    path = require('path'),
+    nopt = require("nopt"),
+    noptUsage = require("nopt-usage"),
+    nconf = require("nconf"),
+    fs = require('fs'),
+    routers = require('./app/src/routers');
 
 // Gestion des arguments de la ligne de commande
 var knownOpts = {
@@ -29,7 +31,7 @@ var knownOpts = {
     }, shortHands = {
         "p": ['--port', '3000'],
         "m": ['--mongodb', 'mongodb://localhost:27017'],
-        "c": ['--config', './config.json'],
+        "c": ['--config', './configs.json'],
         "d": ['--daemon', 'true'],
         "s": ['--save', 'true'],
         "h": ['--help', 'true']
@@ -43,12 +45,12 @@ var knownOpts = {
     }, defaultOpts = {
         "port": 3000,
         "mongodb": 'mongodb://localhost:27017',
-        "config": './config.json',
+        "config": './configs.json',
         "daemon": false,
         "save": false,
         "help": false
     },
-    parsed = nopt(knownOpts, shortHands, process.argv, 2),
+    parsed = nopt(knownOpts, shortHands, process.argv, 6),
     usage = noptUsage(knownOpts, shortHands, descOpts, defaultOpts);
 
 if (parsed.help) {
@@ -56,9 +58,9 @@ if (parsed.help) {
     console.log(usage);
     process.exit(0);
 }
-
+console.log((parsed.config) ? parsed.config : defaultOpts['config']);
 nconf.file({
-    file: parsed.config
+    file: (parsed.config) ? parsed.config : defaultOpts['config']
 });
 
 if (parsed.save) {
@@ -80,10 +82,10 @@ var app = express();                 // define our app using express
 var hbsEngine = handlebars.create({
     extname: ".hbs",
     defaultLayout: 'main',
-    layoutsDir: "app/views/layouts/",
-    partialsDir: "app/views/partials/"
+    layoutsDir: "app/src/views/layouts/",
+    partialsDir: "app/src/views/partials/"
 });
-app.set('views', 'app/views/');
+app.set('views', 'app/src/views/');
 app.engine('.hbs', hbsEngine.engine);
 app.set('view engine', '.hbs');
 
@@ -94,29 +96,20 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(passport.initialize());
-
 app.use(session({
     secret: 'Super Secret Session Key',
     saveUninitialized: true,
     resave: true
 }));
 
-mongoose.connect(parsed.mongodb +'/athome'); // connect to our database
-
-var router = express.Router();
+mongoose.connect(parsed.mongodb + '/athome'); // connect to our database
 
 // Initial dummy route for testing
 // http://localhost:3000/
-router.get('/', function (req, res) {
-    res.json({message: 'You are running dangerously low on beer!'});
-});
-app.use('', router);
 
-app.use('/api', require('./app/routers/oauth2'));
-app.use('/api', require('./app/routers/client'));
-app.use('/api', require('./app/routers/user'));
-app.use('/api', require('./app/routers/book'));
-app.use('/api', require('./app/routers/shelf'));
+app.use('/', express.static(path.join(__dirname, 'public')));
+//routes list:
+routers.initialize(app);
 
 // START THE SERVER
 // =============================================================================

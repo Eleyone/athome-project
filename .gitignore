@@ -4,5 +4,5 @@ athome-project.iml
 .idea
 /node_modules
 /node_modules/**
-/public/bower_components
-/public/bower_components/**
+/client/bower_components
+/client/bower_components/**

@@ -1,7 +1,7 @@
 /**
  * Created by lnwf9885 on 24/02/2016.
  */
-var Book = require('../../app/models/book');
+var Book = require('../../src/models/book');
 
 describe("Book", function () {
     //holds a customer to use in the each test

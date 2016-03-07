@@ -1,7 +1,7 @@
 /**
  * Created by lnwf9885 on 24/02/2016.
  */
-var Shelf = require('../../app/models/shelf');
+var Shelf = require('../../src/models/shelf');
 
 describe("Shelf", function () {
     //holds a customer to use in the each test

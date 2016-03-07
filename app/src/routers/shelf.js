@@ -9,13 +9,13 @@ var authController = require('../controllers/auth');
 var shelfApiRouter = express.Router();
 
 shelfApiRouter.route('/shelfs')
-    .post(authController.isAuthenticated, shelfController.postBooks)
-    .get(authController.isAuthenticated, shelfController.getBooks);
+    .post(authController.isAuthenticated, shelfController.postShelfs)
+    .get(authController.isAuthenticated, shelfController.getShelfs);
 
 // Create endpoint handlers for /beers/:beer_id
 shelfApiRouter.route('/shelfs/:shelf_id')
-    .get(authController.isAuthenticated, shelfController.getBook)
-    .put(authController.isAuthenticated, shelfController.putBook)
-    .delete(authController.isAuthenticated, shelfController.deleteBook);
+    .get(authController.isAuthenticated, shelfController.getShelf)
+    .put(authController.isAuthenticated, shelfController.putShelf)
+    .delete(authController.isAuthenticated, shelfController.deleteShelf);
 
 module.exports = shelfApiRouter;

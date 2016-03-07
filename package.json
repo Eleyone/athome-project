@@ -15,6 +15,9 @@
     "email": "grousset.a@gmail.com"
   },
   "main": "server.js",
+  "engines": {
+    "node": "4.3.x"
+  },
   "dependencies": {
     "bcrypt-nodejs": "~0.0.3",
     "body-parser": "~1.0.1",
@@ -50,7 +53,6 @@
     "karma-coverage": "^0.5.3",
     "karma-mocha": "^0.2.2",
     "karma-requirejs": "^0.2.5",
-    "karma-mocha": "^0.2.2",
     "karma-chai": "^0.1.0",
     "karma-sinon": "^1.0.4",
     "karma-phantomjs-launcher": "*",

@@ -6,7 +6,7 @@ module.exports = function (config) {
         plugins: ['karma-mocha', 'karma-chai', 'karma-sinon', 'karma-requirejs', 'karma-browserify', 'karma-phantomjs-launcher'],
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
-        basePath: 'public/',
+        basePath: 'client/',
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter

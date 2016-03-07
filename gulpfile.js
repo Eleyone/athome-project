@@ -9,9 +9,9 @@ var plugins = require('gulp-load-plugins')(); // tous les plugins de package.jso
 
 // Variables de chemins
 var configs = {
-    src : './public/src',
-    dest : './public/dist', // dossier à livrer
-    bower: './public/bower_components'
+    src : './client/src',
+    dest : './public/', // dossier à livrer
+    bower: './client/bower_components'
 };
 
 gulp.task('bower', function() {
