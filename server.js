@@ -58,7 +58,7 @@ if (parsed.help) {
     console.log(usage);
     process.exit(0);
 }
-console.log((parsed.config) ? parsed.config : defaultOpts['config']);
+
 nconf.file({
     file: (parsed.config) ? parsed.config : defaultOpts['config']
 });
@@ -75,9 +75,7 @@ if (parsed.daemon) {
     require('daemon')();
 }
 
-console.log("PID: ", process.pid);
-
-var port = process.env.PORT || parsed.port;        // set our port
+var port = process.env.PORT || parsed.port || defaultOpts['port']; // set our port
 var app = express();                 // define our app using express
 var hbsEngine = handlebars.create({
     extname: ".hbs",
@@ -102,16 +100,18 @@ app.use(session({
     resave: true
 }));
 
-mongoose.connect(parsed.mongodb + '/athome'); // connect to our database
+mongoose.connect((parsed.mongodb || defaultOpts['mongodb']) + '/athome'); // connect to our database
 
 // Initial dummy route for testing
 // http://localhost:3000/
 
-app.use('/', express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 //routes list:
 routers.initialize(app);
 
 // START THE SERVER
 // =============================================================================
 app.listen(port);
+
+console.log("PID: ", process.pid);
 console.log('Magic happens on port ' + port);
