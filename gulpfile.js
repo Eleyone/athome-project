@@ -10,7 +10,10 @@ var plugins = require('gulp-load-plugins')(); // tous les plugins de package.jso
 // Variables de chemins
 var configs = {
     src : './client/src',
-    dest : './public/', // dossier à livrer
+    dest : {
+        dev: './public/build',
+        prod: './public/dist'
+    }, // dossier à livrer
     bower: './client/bower_components'
 };
 

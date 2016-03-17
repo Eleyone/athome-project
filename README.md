@@ -1,7 +1,13 @@
 # athome-project
 Home library management app
 
-##Install
+## Disclaimer
+
+This is a **work in progress** application.
+
+This project conataint 2 side, a server API, and a backbone front app to work with API
+
+## Install
 
 First clone this repositry on your workspace,
 ```shell
@@ -17,7 +23,7 @@ third, start app.
 ```
 last, enjoy :)
 
-##Resources
+## Resources
 
-[Scott Smith tutorial on RESTFul API with NodeJS](http://scottksmith.com/blog/2014/05/02/building-restful-apis-with-node/)
-[JASON K (SHORTTOMPKINS) boilerplate web app NodeJS ExpressJS BackboneJs] (http://kroltech.com/2013/12/29/boilerplate-web-app-using-backbone-js-expressjs-node-js-mongodb/)
+- [Scott Smith tutorial on RESTFul API with NodeJS](http://scottksmith.com/blog/2014/05/02/building-restful-apis-with-node/)
+- [JASON K (SHORTTOMPKINS) boilerplate web app NodeJS ExpressJS BackboneJs](http://kroltech.com/2013/12/29/boilerplate-web-app-using-backbone-js-expressjs-node-js-mongodb/)
