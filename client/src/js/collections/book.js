@@ -1,9 +1,9 @@
 define([
     'backbone',
     '/models/book'
-], function (Backbone, BookfModel) {
-    var BookCollection = Backbone.Collection.extend({
-        model: BookfModel
+], function (Backbone, BookModel) {
+    return BookCollection = Backbone.Collection.extend({
+        model: BookModel,
+        urlRoot: '/api/book'
     });
-    return BookCollection;
 });

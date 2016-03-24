@@ -5,36 +5,43 @@ require([
     'templates',
     'jquery',
     'underscore',
-    'routers/default'
-], function (Backbone, Mn, Handlebars, JST, $, _, DefaultRouter) {
+    'controller',
+    'router'
+], function (Backbone, Mn, Handlebars, JST, $, _, MainController, MainRouter) {
 
-    AtHome.app = function(Backbone, Mn, Handlebars, JST, $, _, DefaultRouter) {
+    AtHome.core = function(Backbone, Mn, Handlebars, JST, $, _, MainController, MainRouter) {
         // Fix < IE8
         $.ajaxSetup({cache: false});
 
         var app = new Mn.Application({container: '#athome-client-app'});
 
         app.addInitializer(function(options){
+            app.views = {};
+            app.data = {};
+        });
+
+        app.addInitializer(function(options){
             Handlebars.templates = JST;
         });
 
         app.addInitializer(function(options){
+
+            app.controller = new MainController();
+
+            app.router = new MainRouter({ controller: app.controller });
+
             Backbone.history.start({
                 pushState: !(window.history && window.history.pushState),
                 hashChange: true,
                 root: '/',
                 silent: true
             });
-            // Initialize your routers here
-            new DefaultRouter();
-
-            // This will trigger your routers to start
-            Backbone.history.loadUrl();
-
-            new myAppRouter();
-
         });
-    }(Backbone, Mn, Handlebars, JST, $, _, DefaultRouter);
+    }(Backbone, Mn, Handlebars, JST, $, _, MainController, MainRouter);
 
-    AtHome.app.start();
+    AtHome.core.vent.bind('app:log', function(msg) {
+        console.log(msg);
+    });
+
+    AtHome.core.start();
 });

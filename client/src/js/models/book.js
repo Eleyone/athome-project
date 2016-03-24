@@ -1,9 +1,8 @@
 define([
-    'backbone'
-], function (Backbone) {
-    var BookModel = Backbone.Model.extend({
+    'model'
+], function (Model) {
+    return BookModel = Model.extend({
         urlRoot: "/api/books",
         idAttribute: '_id'
     });
-    return BookModel;
 });

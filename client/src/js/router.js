@@ -7,8 +7,8 @@ define([
     var DefaultRouter = Mn.AppRouter.extend({
         appRoutes: {
             '#': 'home',
-            'details/:id': 'details',
-            'add': 'add'
+            'profil/:id': 'profil',
+            'register': 'register'
         }
     });
 

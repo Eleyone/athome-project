@@ -14,25 +14,13 @@ var paths = require("./paths")
 module.exports = function(){
     gulp.watch(paths.sources.tasks, ["scripts:linting"])
 
-    gulp.watch(paths.sources.scripts, ["scripts"])
+    gulp.watch(paths.sources.js, ["scripts"])
 
-    gulp.watch(paths.sources.stylesheets + "/**/*.css", ["stylesheets"])
+    gulp.watch(paths.sources.less, ["less"])
 
-    gulp.watch(
-        [
-            paths.sources.pages,
-            paths.sources.pagesMd,
-            paths.sources.partials,
-            paths.sources.mixins,
-            paths.sources.layouts,
-            paths.sources.lang
-        ],
-        ["pages"]
-    )
+    gulp.watch(paths.sources.templates, ["templates"])
 
     gulp.watch(paths.sources.assets, ["assets"])
-
-    gulp.watch(paths.sources.public, ["public"])
 
     gulp.watch([paths.dist.public + "/**/*"], server.livereload)
 }
