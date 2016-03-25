@@ -27,28 +27,32 @@ var knownOpts = {
         "config": String,
         "daemon": Boolean,
         "save": Boolean,
-        "help": Boolean
+        "help": Boolean,
+        "env": String
     }, shortHands = {
         "p": ['--port', '3000'],
         "m": ['--mongodb', 'mongodb://localhost:27017'],
         "c": ['--config', './configs.json'],
         "d": ['--daemon', 'true'],
         "s": ['--save', 'true'],
-        "h": ['--help', 'true']
+        "h": ['--help', 'true'],
+        "e": ['--help', 'prod']
     }, descOpts = {
         "port": "Application port",
         "mongodb": "MongoDB server address",
         "config": "Path to config file",
         "daemon": "Start application as deamon",
         "save": "Save command line config to config file",
-        "help": "Show this help"
+        "help": "Show this help",
+        "env": "Execution environment can be prod, dev, test respectly for Production, Developpment and Testing"
     }, defaultOpts = {
         "port": 3000,
         "mongodb": 'mongodb://localhost:27017',
         "config": './configs.json',
         "daemon": false,
         "save": false,
-        "help": false
+        "help": false,
+        "env": "prod"
     },
     parsed = nopt(knownOpts, shortHands, process.argv, 6),
     usage = noptUsage(knownOpts, shortHands, descOpts, defaultOpts);
@@ -79,7 +83,7 @@ var port = process.env.PORT || parsed.port || defaultOpts['port']; // set our po
 var app = express();                 // define our app using express
 var hbsEngine = handlebars.create({
     extname: ".hbs",
-    defaultLayout: 'main',
+    defaultLayout: parsed.env,
     layoutsDir: "app/src/views/layouts/",
     partialsDir: "app/src/views/partials/"
 });
@@ -105,7 +109,9 @@ mongoose.connect((parsed.mongodb || defaultOpts['mongodb']) + '/athome'); // con
 // Initial dummy route for testing
 // http://localhost:3000/
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(
+    path.join(__dirname, 'public/' + parsed.env)
+));
 //routes list:
 routers.initialize(app);
 

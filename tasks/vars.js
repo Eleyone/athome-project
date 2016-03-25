@@ -9,7 +9,10 @@ module.exports = {
             tests: "/client/tests/**/*.js",
             less: "/client/src/less/**/*.less",
             assets: "/client/src/assets/**/*",
-            fonts: "/client/src/fonts/**/*"
+            fonts: "/client/src/fonts/**/*",
+            bower: {
+                path: "/client/bower_component/"
+            },
         },
         tasks: "/tasks/*.js"
     },
@@ -21,6 +24,12 @@ module.exports = {
             assets: "/public/prod/assets/",
             css: "/public/prod/css/",
             scripts: "/public/prod/js/"
+        },
+        testing: {
+            icons: "/public/test/fonts/",
+            assets: "/public/test/assets/",
+            css: "/public/test/css/",
+            scripts: "/public/test/js/"
         },
         dev: {
             icons: "/public/dev/fonts/",
