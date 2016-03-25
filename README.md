@@ -26,4 +26,4 @@ last, enjoy :)
 ## Resources
 
 - [Scott Smith tutorial on RESTFul API with NodeJS](http://scottksmith.com/blog/2014/05/02/building-restful-apis-with-node/)
-- [JASON K (SHORTTOMPKINS) boilerplate web app NodeJS ExpressJS BackboneJs](http://kroltech.com/2013/12/29/boilerplate-web-app-using-backbone-js-expressjs-node-js-mongodb/)
+- [JASON K (SHORTTOMPKINS) boilerplate web app NodeJS ExpressJS BackboneJs](http://kroltech.com/2013/12/29/boilerplate-web-app-using-backbone-js-expressjs-node-js-mongodb/) ([github](https://github.com/shorttompkins/benm))
