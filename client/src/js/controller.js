@@ -9,8 +9,19 @@ define([
     return Controller = Mn.Controller.extend({
         initialize: function(){
             AtHome.core.vent.trigger('app:log', 'Controller: Initializing');
-            window.AtHome.views = Views;
         },
-        home: HomeController
+        renderView: function(view) {
+            this.destroyCurrentView(view);
+            AtHome.core.vent.trigger('app:log', 'Controller: Rendering new view.');
+            $('#athome-client-app').html(view.render().el);
+        },
+        destroyCurrentView: function(view) {
+            if (!_.isUndefined(window.AtHome.views.currentView)) {
+                AtHome.core.vent.trigger('app:log', 'Controller: Destroying existing view.');
+                window.AtHome.views.currentView.close();
+            }
+            window.AtHome.views.currentView = view;
+        },
+        home: HomeController,
     });
 });

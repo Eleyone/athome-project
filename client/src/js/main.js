@@ -39,7 +39,7 @@ require([
         });
     }(Backbone, Mn, Handlebars, JST, $, _, MainController, MainRouter);
 
-    AtHome.core.vent.bind('app:log', function(msg) {
+    AtHome.core.event.bind('app:log', function(msg) {
         console.log(msg);
     });
 
