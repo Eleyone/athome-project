@@ -12,8 +12,6 @@ var ports = {
     livereload : 4243
 }
 
-var paths = require("./paths")
-
 module.exports = {
     /**
      * start a dev server (connect + livereload) & open it

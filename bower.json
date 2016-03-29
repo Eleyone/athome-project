@@ -16,8 +16,6 @@
     "tests"
   ],
   "dependencies": {
-    "requirejs": "latest",
-    "bootstrap": "latest",
-    "marionette.handlebars": "latest"
+    "bootstrap": "latest"
   }
 }

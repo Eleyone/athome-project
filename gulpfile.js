@@ -4,31 +4,38 @@
 // Requis
 var gulp = require('gulp');
 
-// Include plugins
-var plugins = require('gulp-load-plugins')(); // tous les plugins de package.json
+var env = "dev", i = process.argv.indexOf("--env");
+if (i >- 1) {
+    env = process.argv[i+1];
+}
 
-// Variables de chemins
-var configs = {
-    src : './client/src',
-    dest : {
-        dev: './public/build',
-        prod: './public/dist'
-    }, // dossier à livrer
-    bower: './client/bower_components'
-};
+gulp.task("clean", require("./tasks/clean")(env))
 
-gulp.task('bower', function() {
-    return plugins.bower()
-        .pipe(gulp.dest(configs.bower))
-});
+// static assets
+gulp.task("assets", require("./tasks/assets")(env))
+gulp.task("fonts", require("./tasks/fonts")(env))
 
-gulp.task('css', function () {
-    return gulp.src(configs.src + '/less/styles.less')
-        .pipe(plugins.less())
-        .pipe(gulp.dest(configs.dest + '/css'));
-});
+// generated assets
+gulp.task("scripts", ["scripts:linting"], require("./tasks/scripts")(env))
+gulp.task("scripts:linting", require("./tasks/scripts-linting")(env))
+gulp.task("stylesheets", require("./tasks/stylesheets")(env))
+gulp.task("stylesheets:all", ["icons"], require("./tasks/stylesheets")(env)) // for first run, to ensure icon css is fresh & ready
 
-gulp.task('icons', function() {
-    return gulp.src(configs.bower + '/fontawesome/fonts/**.*')
-        .pipe(gulp.dest(configs.dest + '/fonts'));
-});
+// build
+gulp.task("dist", [
+    "clean",
+    "assets",
+    "icons",
+    "scripts",
+    "stylesheets:all"
+])
+
+// dev tasks
+gulp.task("server", ["dist"], require("./tasks/server").start)
+gulp.task("watch", ["dist"], require("./tasks/watch"))
+
+gulp.task("default", [
+    "dist",
+    "server",
+    "watch"
+])

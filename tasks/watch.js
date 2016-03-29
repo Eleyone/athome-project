@@ -3,7 +3,7 @@
  */
 var gulp = require("gulp")
 var server = require("./server")
-var paths = require("./paths")
+var vars = require("./vars")
 
 /**
  * watch task
@@ -12,15 +12,15 @@ var paths = require("./paths")
  * used for development
  */
 module.exports = function(){
-    gulp.watch(paths.sources.tasks, ["scripts:linting"])
+    gulp.watch(vars.sources.tasks, ["scripts:linting"])
 
-    gulp.watch(paths.sources.js, ["scripts"])
+    gulp.watch(vars.sources.js, ["scripts"])
 
-    gulp.watch(paths.sources.less, ["less"])
+    gulp.watch(vars.sources.less, ["less"])
 
-    gulp.watch(paths.sources.templates, ["templates"])
+    gulp.watch(vars.sources.templates, ["templates"])
 
-    gulp.watch(paths.sources.assets, ["assets"])
+    gulp.watch(vars.sources.assets, ["assets"])
 
-    gulp.watch([paths.dist.public + "/**/*"], server.livereload)
+    gulp.watch([vars.dist.public + "/**/*"], server.livereload)
 }
