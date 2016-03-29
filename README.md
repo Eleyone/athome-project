@@ -1,14 +1,13 @@
-# athome-project
+# AtHome Project
 Home library management app
 
 ## Disclaimer
-
 This is a **work in progress** application.
 
-This project conataint 2 side, a server API, and a backbone front app to work with API
+## Presentation
+AtHome Project is a personal library management, where you can archive which book you are reading or already read, and which book you possed or not.
 
 ## Install
-
 First clone this repositry on your workspace,
 ```shell
     workspace# git clone https://github.com/Eleyone/athome-project.git
