@@ -1,9 +1,6 @@
-define([
-    'backbone',
-    '/models/shelf'
-], function (Backbone, ShelfModel) {
-    var ShelfCollection = Backbone.Collection.extend({
-        model: ShelfModel
-    });
-    return ShelfCollection;
+var Backbone = require('backbone'),
+    ShelfModel = require('../models/shelf');
+
+module.exports = ShelfCollection = Backbone.Collection.extend({
+    model: ShelfModel
 });

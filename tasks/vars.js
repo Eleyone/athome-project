@@ -6,14 +6,12 @@ module.exports = {
     sources: {
         client: {
             templates: "/client/src/js/templates/**/*.hbs",
+            'js-root': "/client/src/js/",
             js: "/client/src/js/**/*.js",
             tests: "/client/tests/**/*.js",
             less: "/client/src/less/**/*.less",
             assets: "/client/src/assets/**/*",
             fonts: "/client/src/fonts/**/*",
-            bower: {
-                path: "/client/bower_component/"
-            },
         },
         tasks: "/tasks/*.js"
     },

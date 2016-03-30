@@ -1,9 +1,5 @@
-define([
-    'backbone'
-], function (Backbone) {
-    var ShelfModel = Backbone.extend({
-        urlRoot: "/api/shelfs",
-        idAttribute: '_id'
-    });
-    return ShelfModel;
+var Model = require('../model');
+
+module.exports = ShelfModel = Model.extend({
+    urlRoot: "/api/shelfs"
 });

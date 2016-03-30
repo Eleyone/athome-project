@@ -1,8 +1,5 @@
-define([
-    'model'
-], function (Model) {
-    return BookModel = Model.extend({
-        urlRoot: "/api/books",
-        idAttribute: '_id'
-    });
+var Model = require('../model');
+
+module.exports = BookModel = Model.extend({
+    urlRoot: "/api/books"
 });

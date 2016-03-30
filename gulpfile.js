@@ -16,6 +16,7 @@ gulp.task("assets", require("./tasks/assets")(env))
 gulp.task("fonts", require("./tasks/fonts")(env))
 
 // generated assets
+gulp.task("templates", require("./tasks/templates")(env))
 gulp.task("scripts", ["scripts:linting"], require("./tasks/scripts")(env))
 gulp.task("scripts:linting", require("./tasks/scripts-linting")(env))
 gulp.task("stylesheets", require("./tasks/stylesheets")(env))
@@ -26,6 +27,7 @@ gulp.task("dist", [
     "clean",
     "assets",
     "icons",
+    "templates",
     "scripts",
     "stylesheets:all"
 ])

@@ -17,10 +17,16 @@ module.exports = function(env){
     console.log("Generate client app scripts")
     console.log("['" + config.sources.client.js + "' to '" + config.dist[env].scripts + "']")
 
+    options = _.extends(config.browserify, {
+        transform: []
+    });
+
+    if (env === 'prod') {
+        options.transform.push("uglifyify");
+    }
+
     return gulp.src(config.sources.client.js)
         .pipe((env === 'prod') ?  plugins.plumber() : util.noop())
-        .pipe(plugins.browserify(
-            (env === 'prod') ? {transform : ["uglifyify"]} : {}
-        ))
+        .pipe(plugins.browserify(options))
         .pipe(gulp.dest(config.dist[env].scripts))
 }
