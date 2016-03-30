@@ -15,6 +15,7 @@ var express = require('express'),
     passport = require('passport'),
     path = require('path'),
     nopt = require("nopt"),
+    noptDefaults = require('nopt-defaults'),
     noptUsage = require("nopt-usage"),
     nconf = require("nconf"),
     fs = require('fs'),
@@ -36,7 +37,7 @@ var knownOpts = {
         "d": ['--daemon', 'true'],
         "s": ['--save', 'true'],
         "h": ['--help', 'true'],
-        "e": ['--help', 'prod']
+        "e": ['--env', 'prod']
     }, descOpts = {
         "port": "Application port",
         "mongodb": "MongoDB server address",
@@ -54,7 +55,7 @@ var knownOpts = {
         "help": false,
         "env": "prod"
     },
-    parsed = nopt(knownOpts, shortHands, process.argv, 6),
+    parsed = noptDefaults(nopt(knownOpts, shortHands, process.argv, 2), defaultOpts),
     usage = noptUsage(knownOpts, shortHands, descOpts, defaultOpts);
 
 if (parsed.help) {
