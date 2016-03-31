@@ -59,7 +59,7 @@ module.exports = {
                 .createServer(
                 connect()
                     .use(require("connect-livereload")({port : ports.livereload}))
-                    .use(require("serve-static")(config.dist[options.env].public))
+                    .use(require("serve-static")(config.dist[global.APP_ENV].public))
             )
                 .listen(ports.web)
                 .on("listening", function(){

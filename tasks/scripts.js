@@ -11,21 +11,21 @@ var plugins = require('gulp-load-plugins')();
  *
  * creates a browserify bundle from `scripts/index`
  */
-module.exports = function(env){
+module.exports = function(){
 
     console.log("Generate client app scripts")
-    console.log("['" + config.sources.client.js + "' to '" + config.dist[env].scripts + "']")
+    console.log("['" + config.sources.client.js.main + "' to '" + config.dist[global.APP_ENV].scripts + "']")
 
-    options = _.extend(config.browserify, {
+    var options = _.extend({
         transform: []
-    });
+    }, config.browserify);
 
-    if (env === 'prod') {
+    if (global.APP_ENV === 'prod') {
         options.transform.push("uglifyify");
     }
 
-    return gulp.src(config.sources.client.js)
-        .pipe((env === 'prod') ?  plugins.plumber() : plugins.util.noop())
+    return gulp.src(config.sources.client.js.main)
+        .pipe((global.APP_ENV === 'prod') ?  plugins.plumber() : plugins.util.noop())
         .pipe(plugins.browserify(options))
-        .pipe(gulp.dest(config.dist[env].scripts))
+        .pipe(gulp.dest(config.dist[global.APP_ENV].scripts))
 }

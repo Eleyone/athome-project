@@ -5,7 +5,7 @@ var gulp = require("gulp");
 var config = require('./configs');
 var plugins = require('gulp-load-plugins')();
 
-module.exports = function(env){
+module.exports = function(){
     console.log('Copying fonts');
     return gulp.src(config.sources.client.fonts)
         .pipe(gulp.dest(config.dist[env].fonts))

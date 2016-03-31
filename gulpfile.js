@@ -4,34 +4,35 @@
 // Requis
 var gulp = require('gulp');
 
-var env = "dev", i = process.argv.indexOf("--env");
+global.APP_ENV = "prod";
+var i = process.argv.indexOf("--env");
 if (i >- 1) {
-    env = process.argv[i+1];
+    global.APP_ENV = process.argv[i+1];
 }
 
-gulp.task("clean", require("./tasks/clean")(env));
+gulp.task("clean", require("./tasks/clean"));
 
 // static assets
-gulp.task("assets", require("./tasks/assets")(env));
-gulp.task("fonts", require("./tasks/fonts")(env));
+gulp.task("assets", require("./tasks/assets"));
+gulp.task("fonts", require("./tasks/fonts"));
 
 // generated assets
-gulp.task("templates", require("./tasks/templates")(env));
-gulp.task("scripts", ["scripts:linting"], require("./tasks/scripts")(env));
-gulp.task("scripts:linting", require("./tasks/scripts-linting")(env));
-gulp.task("stylesheets", require("./tasks/stylesheets")(env));
+gulp.task("scripts:all", ["scripts:templates", "scripts:linting"], require("./tasks/scripts"));
+gulp.task("scripts:dirty", ["scripts:templates"], require("./tasks/scripts"));
+gulp.task("scripts:templates", require("./tasks/templates"));
+gulp.task("scripts:linting", require("./tasks/scripts-linting"));
+gulp.task("stylesheets", require("./tasks/stylesheets"));
 
 // build
 gulp.task("dist", [
     "clean",
     "assets",
-    "templates",
-    "scripts",
+    "scripts:all",
     "stylesheets"
 ]);
 
 // dev tasks
-gulp.task("server", ["dist"], require("./tasks/server").start({env: env}));
+gulp.task("server", ["dist"], require("./tasks/server").start);
 gulp.task("watch", ["dist"], require("./tasks/watch"));
 
 gulp.task("default", [

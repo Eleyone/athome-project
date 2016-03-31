@@ -10,14 +10,15 @@ var config = require("./configs");
  *
  * jshint + jscs
  */
-module.exports = function(env){
+module.exports = function(){
     console.log('Linting JS sources');
     return gulp.src([
-        config.sources.client.js,
+        config.sources.client.js.files,
         config.sources.tasks,
-        config.sources.client.tests
+        config.sources.client.tests,
+        config.lint.exptions.templates
     ])
-        .pipe((env === 'prod') ?  plugins.plumber() : plugins.util.noop())
+        .pipe((global.APP_ENV === 'prod') ?  plugins.plumber() : plugins.util.noop())
         .pipe(plugins.jscs())
         .pipe(plugins.jshint())
         .pipe(plugins.jshint.reporter("jshint-stylish"))

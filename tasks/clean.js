@@ -4,9 +4,9 @@
 var config = require('./configs');
 var rimraf = require("rimraf");
 
-module.exports = function(env){
+module.exports = function(){
     console.log('Cleaning temp folder', config.tmp);
     rimraf.sync(config.tmp)
-    console.log('Cleaning temp folder', config.dist[env].public);
-    rimraf.sync(config.dist[env].public)
+    console.log('Cleaning temp folder', config.dist[global.APP_ENV].public);
+    rimraf.sync(config.dist[global.APP_ENV].public)
 }

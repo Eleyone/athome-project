@@ -4,8 +4,8 @@
 var gulp = require("gulp");
 var config = require('./configs');
 
-module.exports = function(env){
+module.exports = function(){
     console.log('Copying assets');
     return gulp.src(config.sources.client.assets)
-        .pipe(gulp.dest(config.dist[env].assets))
+        .pipe(gulp.dest(config.dist[global.APP_ENV].assets))
 }

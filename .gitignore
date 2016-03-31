@@ -5,4 +5,5 @@ athome-project.iml
 /node_modules
 /node_modules/**
 /client/bower_components
+/client/src/js/templates.js
 /client/bower_components/**
