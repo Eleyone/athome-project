@@ -2,15 +2,13 @@
  * Created by lnwf9885 on 29/03/2016.
  */
 var gulp = require("gulp")
-// Include plugins
-var plugins = require('gulp-load-plugins')(); // tous les plugins de package.json
-
-var config = require('./tasks/vars');
-
+var config = require('./configs');
+var plugins = require('gulp-load-plugins')();
 
 module.exports = function (env) {
-    return gulp.src(configs.src + '/less/styles.less')
-        .pipe((env === 'prod') ?  plugins.plumber() : util.noop())
+    console.log('Generating CSS');
+    return gulp.src(config.sources.client.less)
+        .pipe((env === 'prod') ?  plugins.plumber() : plugins.util.noop())
         .pipe(plugins.less())
-        .pipe(gulp.dest(configs.dest + '/css'));
+        .pipe(gulp.dest(config.dist[env].css));
 }

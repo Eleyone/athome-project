@@ -5,7 +5,7 @@ var gulp = require("gulp")
 // Include plugins
 var plugins = require('gulp-load-plugins')(); // tous les plugins de package.json
 
-var config = require('./tasks/vars');
+var config = require('./configs');
 
 gulp.task('bower', function() {
     return plugins.bower()

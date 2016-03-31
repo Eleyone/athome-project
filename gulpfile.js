@@ -9,35 +9,33 @@ if (i >- 1) {
     env = process.argv[i+1];
 }
 
-gulp.task("clean", require("./tasks/clean")(env))
+gulp.task("clean", require("./tasks/clean")(env));
 
 // static assets
-gulp.task("assets", require("./tasks/assets")(env))
-gulp.task("fonts", require("./tasks/fonts")(env))
+gulp.task("assets", require("./tasks/assets")(env));
+gulp.task("fonts", require("./tasks/fonts")(env));
 
 // generated assets
-gulp.task("templates", require("./tasks/templates")(env))
-gulp.task("scripts", ["scripts:linting"], require("./tasks/scripts")(env))
-gulp.task("scripts:linting", require("./tasks/scripts-linting")(env))
-gulp.task("stylesheets", require("./tasks/stylesheets")(env))
-gulp.task("stylesheets:all", ["icons"], require("./tasks/stylesheets")(env)) // for first run, to ensure icon css is fresh & ready
+gulp.task("templates", require("./tasks/templates")(env));
+gulp.task("scripts", ["scripts:linting"], require("./tasks/scripts")(env));
+gulp.task("scripts:linting", require("./tasks/scripts-linting")(env));
+gulp.task("stylesheets", require("./tasks/stylesheets")(env));
 
 // build
 gulp.task("dist", [
     "clean",
     "assets",
-    "icons",
     "templates",
     "scripts",
-    "stylesheets:all"
-])
+    "stylesheets"
+]);
 
 // dev tasks
-gulp.task("server", ["dist"], require("./tasks/server").start)
-gulp.task("watch", ["dist"], require("./tasks/watch"))
+gulp.task("server", ["dist"], require("./tasks/server").start({env: env}));
+gulp.task("watch", ["dist"], require("./tasks/watch"));
 
 gulp.task("default", [
     "dist",
     "server",
     "watch"
-])
+]);

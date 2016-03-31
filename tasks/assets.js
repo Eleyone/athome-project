@@ -1,13 +1,11 @@
 /**
  * Created by lnwf9885 on 29/03/2016.
  */
-var gulp = require("gulp")
-// Include plugins
-var plugins = require('gulp-load-plugins')(); // tous les plugins de package.json
-
-var config = require('./tasks/vars');
+var gulp = require("gulp");
+var config = require('./configs');
 
 module.exports = function(env){
-    return gulp.src(config.sources.assets)
+    console.log('Copying assets');
+    return gulp.src(config.sources.client.assets)
         .pipe(gulp.dest(config.dist[env].assets))
 }

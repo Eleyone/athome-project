@@ -4,7 +4,8 @@
 var path = require("path")
 var cwd = path.join(process.cwd(), "dist") + path.sep
 
-var util = require("gulp-util")
+var plugins = require('gulp-load-plugins')();
+var config = require("./configs");
 
 var livereloadServer
 var ports = {
@@ -32,6 +33,7 @@ module.exports = {
         options.livereload = (options.livereload !== undefined ? options.livereload : true)
         options.connect = (options.connect !== undefined ? options.connect : true)
         options.open = (options.open !== undefined ? options.open : "http://localhost:" + ports.web)
+        options.env = (options.env !== undefined ? options.env : "prod")
 
         if(options.livereload){
             // assume integer, so a port
@@ -41,7 +43,7 @@ module.exports = {
 
             livereloadServer = require("tiny-lr")()
             livereloadServer.listen(ports.livereload, function(){
-                util.log("Started livereload server on http://localhost:" + ports.livereload)
+                plugins.util.log("Started livereload server on http://localhost:" + ports.livereload)
             })
         }
 
@@ -57,11 +59,11 @@ module.exports = {
                 .createServer(
                 connect()
                     .use(require("connect-livereload")({port : ports.livereload}))
-                    .use(require("serve-static")(paths.dist.public))
+                    .use(require("serve-static")(config.dist[options.env].public))
             )
                 .listen(ports.web)
                 .on("listening", function(){
-                    util.log("Started connect web server on http://localhost:" + ports.web)
+                    plugins.util.log("Started connect web server on http://localhost:" + ports.web)
                 })
         }
 
@@ -69,7 +71,7 @@ module.exports = {
             require("opn")(options.open)
         }
 
-        if(cb){
+        if( 'function' == typeof cb){
             cb()
         }
     },
@@ -82,7 +84,7 @@ module.exports = {
      */
     livereload : function(file){
         // var filePath = file ? file.hasOwnProperty("path") ? file.path : file : "*";
-        util.log("Reloading (" + file.type + ")", file.path.replace(cwd, ""))
+        plugins.util.log("Reloading (" + file.type + ")", file.path.replace(cwd, ""))
         livereloadServer.changed({body : {files : [file.path]}})
     }
 }

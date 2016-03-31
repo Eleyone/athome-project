@@ -1,11 +1,10 @@
 /**
  * Created by lnwf9885 on 29/03/2016.
  */
-var gulp = require("gulp")
-// Include plugins
-var plugins = require('gulp-load-plugins')(); // tous les plugins de package.json
-
-var config = require('./tasks/vars');
+var gulp = require("gulp");
+var _ = require('underscore');
+var config = require('./configs');
+var plugins = require('gulp-load-plugins')();
 
 /**
  * task scripts
@@ -17,7 +16,7 @@ module.exports = function(env){
     console.log("Generate client app scripts")
     console.log("['" + config.sources.client.js + "' to '" + config.dist[env].scripts + "']")
 
-    options = _.extends(config.browserify, {
+    options = _.extend(config.browserify, {
         transform: []
     });
 
@@ -26,7 +25,7 @@ module.exports = function(env){
     }
 
     return gulp.src(config.sources.client.js)
-        .pipe((env === 'prod') ?  plugins.plumber() : util.noop())
+        .pipe((env === 'prod') ?  plugins.plumber() : plugins.util.noop())
         .pipe(plugins.browserify(options))
         .pipe(gulp.dest(config.dist[env].scripts))
 }
