@@ -2,13 +2,16 @@
  * Created by lnwf9885 on 17/03/2016.
  */
 module.exports = {
-    bower: 'client/bower_components',
+    bower: {
+        root: "client/bower_components"
+    },
     browserify : {
+        transform: [],
         debug: true
     },
     lint: {
         exptions: {
-            templates: '!client/src/js/templates.js'
+            templates: "!client/src/js/templates.js"
         }
     },
     tmp: "tmp/",

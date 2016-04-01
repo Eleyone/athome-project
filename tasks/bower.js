@@ -2,12 +2,10 @@
  * Created by lnwf9885 on 29/03/2016.
  */
 var gulp = require("gulp")
-// Include plugins
-var plugins = require('gulp-load-plugins')(); // tous les plugins de package.json
+var plugins = require("gulp-load-plugins")(); // tous les plugins de package.json
+var config = require("./configs");
 
-var config = require('./configs');
-
-gulp.task('bower', function() {
+module.exports = function() {
     return plugins.bower()
-        .pipe(gulp.dest(configs.bower))
-});
+        .pipe(gulp.dest(config.bower.root))
+};

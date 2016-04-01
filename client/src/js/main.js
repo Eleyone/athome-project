@@ -1,3 +1,4 @@
-var App = require('./app');
-var atHome = new App();
+var App = require("./app"),
+    atHome = new App();
+
 atHome.start();

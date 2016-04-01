@@ -2,45 +2,44 @@
  * Created by lnwf9885 on 30/03/2016.
  */
 
+var Marionette = require("backbone.marionette"),
+    Backbone = require("backbone"),
+    $ = require("jquery"),
+    MainController = require("./controller"),
+    MainRouter = require("./router");
 
-var Marionette = require('backbone.marionette'),
-    MainController = require('./controller'),
-    MainRouter = require('./router');
-
-module.exports = App = function App() {};
+var App = function App() {};
 
 App.prototype.start = function () {
     // Fix < IE8
     $.ajaxSetup({cache: false});
 
-    App.core = new Marionette.Application({container: '#athome-client-app'});
+    App.core = new Marionette.Application({container: "#athome-client-app"});
 
-    app.addInitializer(function (options) {
-        app.views = {};
-        app.data = {};
+    App.core.addInitializer(function () {
+        App.views = {};
+        App.datas = {};
     });
 
-    app.addInitializer(function (options) {
-        Handlebars.templates = JST;
-    });
+    App.core.addInitializer(function () {
 
-    app.addInitializer(function (options) {
+        App.core.controller = new MainController();
 
-        app.controller = new MainController();
-
-        app.router = new MainRouter({controller: app.controller});
+        App.core.router = new MainRouter({controller: App.core.controller});
 
         Backbone.history.start({
             pushState: !(window.history && window.history.pushState),
             hashChange: true,
-            root: '/',
+            root: "/",
             silent: true
         });
     });
 
-    App.core.vent.bind('app:log', function (msg) {
+    App.core.vent.bind("app:log", function (msg) {
         console.log(msg);
     });
 
     App.core.start();
 };
+
+module.exports = App;

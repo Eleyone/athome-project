@@ -14,16 +14,14 @@ module.exports = function() {
         .pipe(plugins.handlebars())
         .pipe(plugins.wrap("Handlebars.template(<%= contents %>)"))
         .pipe(plugins.declare({
-            root: "exports",
+            root: "module.exports",
             noRedeclare: true, // Avoid duplicate declarations
             processName: function(filePath) {
-                // Allow nesting based on path using gulp-declare's processNameByPath()
-                // You can remove this option completely if you aren't using nested folders
-                // Drop the templates/ folder from the namespace path by removing it from the filePath
-                return plugins.declare.processNameByPath(filePath.replace("client/src/js/templates/", ""));
+                var path = filePath.replace(/client[\\/]src[\\/]js[\\/]templates[\\/]/g, "");
+                return plugins.declare.processNameByPath(path);
             }
         }))
-        .pipe(plugins.concat('templates.js'))
+        .pipe(plugins.concat("templates.js"))
         .pipe(plugins.wrap("var Handlebars = require('handlebars');\n\n<%= contents %>"))
         .pipe(gulp.dest(config.sources.client.js.root));
 };

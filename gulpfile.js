@@ -2,12 +2,12 @@
  * Created by arnaud on 02/03/16.
  */
 // Requis
-var gulp = require('gulp');
+var gulp = require("gulp");
 
 global.APP_ENV = "prod";
 var i = process.argv.indexOf("--env");
-if (i >- 1) {
-    global.APP_ENV = process.argv[i+1];
+if (i > -1) {
+    global.APP_ENV = process.argv[i + 1];
 }
 
 gulp.task("clean", require("./tasks/clean"));
@@ -34,6 +34,7 @@ gulp.task("dist", [
 // dev tasks
 gulp.task("server", ["dist"], require("./tasks/server").start);
 gulp.task("watch", ["dist"], require("./tasks/watch"));
+gulp.task("bower", require("./tasks/bower"));
 
 gulp.task("default", [
     "dist",

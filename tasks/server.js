@@ -4,7 +4,7 @@
 var path = require("path")
 var cwd = path.join(process.cwd(), "dist") + path.sep
 
-var plugins = require('gulp-load-plugins')();
+var plugins = require("gulp-load-plugins")();
 var config = require("./configs");
 
 var livereloadServer
@@ -71,7 +71,7 @@ module.exports = {
             require("opn")(options.open)
         }
 
-        if( 'function' == typeof cb){
+        if( "function" == typeof cb){
             cb()
         }
     },
