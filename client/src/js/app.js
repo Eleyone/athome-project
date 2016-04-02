@@ -4,15 +4,12 @@
 
 var Marionette = require("backbone.marionette"),
     Backbone = require("backbone"),
-    $ = require("jquery"),
     MainController = require("./controller"),
     MainRouter = require("./router");
 
 var App = function App() {};
 
 App.prototype.start = function () {
-    // Fix < IE8
-    $.ajaxSetup({cache: false});
 
     App.core = new Marionette.Application({container: "#athome-client-app"});
 

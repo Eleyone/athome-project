@@ -1,5 +1,6 @@
-var Model = require('../model');
+var Model = require("../model");
 
-module.exports = ShelfModel = Model.extend({
+var ShelfModel = Model.extend({
     urlRoot: "/api/shelfs"
 });
+module.exports = ShelfModel;

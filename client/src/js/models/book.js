@@ -1,5 +1,7 @@
-var Model = require('../model');
+var Model = require("../model");
 
-module.exports = BookModel = Model.extend({
+var BookModel = Model.extend({
     urlRoot: "/api/books"
 });
+
+module.exports = BookModel;

@@ -1,6 +1,8 @@
-var Backbone = require('backbone'),
-    UserModel = require('../models/user');
+var Backbone = require("backbone"),
+    UserModel = require("../models/user");
 
-module.exports = UserCollection = Backbone.Collection.extend({
+var UserCollection = Backbone.Collection.extend({
     model: UserModel
 });
+
+module.exports = UserCollection;

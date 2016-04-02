@@ -1,6 +1,8 @@
-var Backbone = require('backbone'),
-    ShelfModel = require('../models/shelf');
+var Backbone = require("backbone"),
+    ShelfModel = require("../models/shelf");
 
-module.exports = ShelfCollection = Backbone.Collection.extend({
+var ShelfCollection = Backbone.Collection.extend({
     model: ShelfModel
 });
+
+module.exports = ShelfCollection;

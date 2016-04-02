@@ -13,10 +13,8 @@ var config = require("./configs");
  */
 module.exports = function(){
     gulp.watch(config.sources.tasks, ["scripts:linting"]);
-    gulp.watch([
-        config.sources.client.js,
-        config.sources.client.templates
-    ], ["scripts:dirty"]);
+    gulp.watch(config.sources.client.js.files, ["scripts:dirty"]);
+    gulp.watch(config.sources.client.templates, ["scripts:dirty"]);
     gulp.watch(config.sources.client.less, ["less"]);
     gulp.watch(config.sources.client.assets, ["assets"]);
     gulp.watch([config.dist.public + "/**/*"], server.livereload)

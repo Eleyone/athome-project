@@ -120,5 +120,6 @@ routers.initialize(app);
 // =============================================================================
 app.listen(port);
 
+console.log("Env: ", parsed.env);
 console.log("PID: ", process.pid);
 console.log('Magic happens on port ' + port);

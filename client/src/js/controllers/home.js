@@ -1,8 +1,8 @@
 /**
  * Created by lnwf9885 on 24/03/2016.
  */
-var BookCollection = require('../collections/book'),
-    BookCollectionView = require('../views/book/list');
+var BookCollection = require("../collections/book"),
+    BookCollectionView = require("../views/book/list");
 
 module.exports = function () {
     var collection = new BookCollection();
@@ -10,5 +10,5 @@ module.exports = function () {
         collection: collection
     });
     this.renderView(view);
-    window.AtHome.router.navigate('#');
+    window.AtHome.router.navigate("#");
 };

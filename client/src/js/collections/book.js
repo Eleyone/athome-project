@@ -1,6 +1,8 @@
-var Backbone = require('backbone'),
-    BookModel = require('../models/book');
+var Backbone = require("backbone"),
+    BookModel = require("../models/book");
 
-module.exports = BookCollection = Backbone.Collection.extend({
+var BookCollection = Backbone.Collection.extend({
     model: BookModel
 });
+
+module.exports = BookCollection;
