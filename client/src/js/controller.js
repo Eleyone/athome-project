@@ -8,19 +8,8 @@ var Marionette = require("backbone.marionette"),
 
 var Controller = Marionette.Controller.extend({
     initialize: function () {
-        AtHome.core.vent.trigger("app:log", "Controller: Initializing");
-    },
-    renderView: function (view) {
-        this.destroyCurrentView(view);
-        AtHome.core.vent.trigger("app:log", "Controller: Rendering new view.");
-        $("#athome-client-app").html(view.render().el);
-    },
-    destroyCurrentView: function (view) {
-        if (!_.isUndefined(window.App.views.currentView)) {
-            AtHome.core.vent.trigger("app:log", "Controller: Destroying existing view.");
-            AtHome.views.currentView.close();
-        }
-        AtHome.views.currentView = view;
+        var globalCh = Backbone.Wreqr.radio.channel("atHome");
+        globalCh.trigger("app:log", "Controller: Initializing");
     },
     home: HomeController,
 });

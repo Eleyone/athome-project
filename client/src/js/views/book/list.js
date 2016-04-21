@@ -13,8 +13,8 @@ var bookItemView = Marionette.ItemView.extend({
         "click": "showDetails"
     },
     showDetails: function () {
-        window.App.core.vent.trigger("app:log", "Contacts View: showDetails hit.");
-        window.App.controller.book(this.model.id);
+        AtHome.core.vent.trigger("app:log", "Contacts View: showDetails hit.");
+        AtHome.controller.book(this.model.id);
     }
 });
 

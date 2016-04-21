@@ -7,36 +7,26 @@ var Marionette = require("backbone.marionette"),
     MainController = require("./controller"),
     MainRouter = require("./router");
 
-var App = function App() {};
+var App = new Marionette.Application();
 
-App.prototype.start = function () {
+App.on("initialize:after", function () {
 
-    App.core = new Marionette.Application({container: "#athome-client-app"});
+    var globalCh = Backbone.Wreqr.radio.channel("atHome");
 
-    App.core.addInitializer(function () {
-        App.views = {};
-        App.datas = {};
+    globalCh.on("app:log", function() {
+        if (window.console) console.log(arguments);
     });
 
-    App.core.addInitializer(function () {
+    App.controller = new MainController();
 
-        App.core.controller = new MainController();
+    App.router = new MainRouter({controller: App.controller});
 
-        App.core.router = new MainRouter({controller: App.core.controller});
-
-        Backbone.history.start({
-            pushState: !(window.history && window.history.pushState),
-            hashChange: true,
-            root: "/",
-            silent: true
-        });
+    Backbone.history.start({
+        pushState: !(window.history && window.history.pushState),
+        hashChange: true,
+        root: "/",
+        silent: true
     });
-
-    App.core.vent.bind("app:log", function (msg) {
-        console.log(msg);
-    });
-
-    App.core.start();
-};
+});
 
 module.exports = App;

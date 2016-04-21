@@ -73,6 +73,8 @@
     "karma-phantomjs-launcher": "*",
     "karma-requirejs": "^0.2.5",
     "karma-sinon": "^1.0.4",
+    "backbone": "~1.2.3",
+    "backbone.marionette": "~2.4.5",
     "marionette.handlebars": "^1.0.1",
     "mocha": "^2.4.5",
     "mocha-mongoose": "^1.1.1",
