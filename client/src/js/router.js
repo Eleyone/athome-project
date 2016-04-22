@@ -4,13 +4,9 @@
 var Marionette = require("backbone.marionette")
     Controller = require("./controller");
 
-var DefaultRouter = Marionette.AppRouter.extend({
+module.exports = Marionette.AppRouter.extend({
     appRoutes: {
-        "#": "home",
-        "profil/:id": "profil",
-        "register": "register"
+        "": "home"
     },
     controller: new Controller()
 });
-
-module.exports = DefaultRouter;

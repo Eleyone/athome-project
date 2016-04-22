@@ -9,6 +9,6 @@ module.exports = function () {
     var view = new BookCollectionView({
         collection: collection
     });
-    this.renderView(view);
-    atHome.router.navigate('#');
+    AtHome.getRootLayout().showChildView('main', view);
+    collection.fetch();
 };

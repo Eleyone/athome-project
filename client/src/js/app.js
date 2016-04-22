@@ -4,29 +4,36 @@
 
 var Marionette = require("backbone.marionette"),
     Backbone = require("backbone"),
-    MainController = require("./controller"),
-    MainRouter = require("./router");
+    RootLayout = require("./layouts/root"),
+    ModalLayout = require("./layouts/modal"),
+    Router = require("./router");
 
-var App = new Marionette.Application();
-
-App.on("initialize:after", function () {
-
-    var globalCh = Backbone.Wreqr.radio.channel("atHome");
-
-    globalCh.on("app:log", function() {
-        if (window.console) console.log(arguments);
-    });
-
-    App.controller = new MainController();
-
-    App.router = new MainRouter({controller: App.controller});
-
-    Backbone.history.start({
-        pushState: !(window.history && window.history.pushState),
-        hashChange: true,
-        root: "/",
-        silent: true
-    });
+var App = Marionette.Application.extend({
+    getRootLayout: function () {
+        return this.root;
+    },
+    setRootLayout: function () {
+        this.root = new RootLayout();
+    },
+    getModalLayout: function () {
+        return this.modal;
+    },
+    setModalLayout: function () {
+        this.modal = new ModalLayout();
+    },
+    onStart: function () {
+        App.router = new Router();
+        Backbone.history.start({
+            pushState: !(window.history && window.history.pushState),
+            hashChange: true,
+            root: "/",
+            silent: true
+        });
+    },
+    onBeforeStart: function () {
+        this.setRootLayout();
+        this.setModalLayout();
+    }
 });
 
-module.exports = App;
+module.exports = new App();

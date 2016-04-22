@@ -9,7 +9,7 @@ var Marionette = require("backbone.marionette"),
 module.exports = Marionette.CompositeView.extend({
     template: Templates.book.list,
     initialize: function () {
-        this.listenTo(this.collection, "change", this.render);
+        this.listenTo(this.collection, "sync", this.render);
     },
     itemView: BookItemView
 });
