@@ -4,7 +4,5 @@ var App = require("./app"),
 // Fix < IE8
 $.ajaxSetup({cache: false});
 
-global.AtHome = new App();
-console.log(AtHome, AtHome.core);
-
+window.AtHome = App;
 AtHome.start();

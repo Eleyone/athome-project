@@ -6,7 +6,8 @@ var Marionette = require("backbone.marionette"),
     BookItemView = require("./list-item");
 
 
-module.exports = BookCollectionView = Marionette.CollectionView.extend({
+module.exports = Marionette.CompositeView.extend({
+    template: Templates.book.list,
     initialize: function () {
         this.listenTo(this.collection, "change", this.render);
     },
