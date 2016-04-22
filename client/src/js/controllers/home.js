@@ -10,5 +10,5 @@ module.exports = function () {
         collection: collection
     });
     this.renderView(view);
-    window.AtHome.router.navigate("#");
+    atHome.router.navigate('#');
 };
