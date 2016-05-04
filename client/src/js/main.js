@@ -4,7 +4,20 @@ var Backbone = require("backbone"),
     $ = require("jquery");
 
 // Fix < IE8
-$.ajaxSetup({cache: false});
+$.ajaxSetup({
+    statusCode: {
+        401: function(){
+            // Redirec the to the login page.
+            window.location.replace('/#login');
+
+        },
+        403: function() {
+            // 403 -- Access denied
+            window.location.replace('/#denied');
+        }
+    },
+    cache: false
+});
 
 Marionette.Behaviors.behaviorsLookup = function () {
     return window.Behaviors;

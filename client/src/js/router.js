@@ -6,7 +6,8 @@ var Marionette = require("backbone.marionette")
 
 module.exports = Marionette.AppRouter.extend({
     appRoutes: {
-        "": "home"
+        "": "home",
+        "login": "login"
     },
     controller: new Controller()
 });
