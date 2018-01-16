@@ -14,6 +14,7 @@ First clone this repositry on your workspace,
 ```
 second, install NodeJS modules in project root folder,
 ```shell
+    workspace# cd athome-project
     athome-project# npm install
 ```
 third, start app.
