@@ -16,8 +16,6 @@ RUN apt-get update -y && apt-get install -y mongodb-org
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get update -y && apt-get install -y nodejs
 
-
-
 EXPOSE 27017
 EXPOSE 3000
 

@@ -22,6 +22,13 @@ third, start app.
 ```
 last, enjoy :)
 
+## Todo
+
+- Finish API implementation
+- Create Front app to test out API
+- OAuth implementation.
+- Docker container for deployement
+
 ## Resources
 
 - [Scott Smith tutorial on RESTFul API with NodeJS](http://scottksmith.com/blog/2014/05/02/building-restful-apis-with-node/)
